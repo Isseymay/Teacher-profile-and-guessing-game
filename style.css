@@ -1,0 +1,202 @@
+
+/*profile*/
+* { box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300&display=swap');
+
+body {
+  width: 100%;
+  text-align: center;
+  background-color:rgb(50,50,50);
+  padding:10px 0px;
+}
+
+#phone {
+  background-color: rgb(50,50,50);
+  margin: 0px auto ;
+  width:420px;
+}
+
+.profile {
+  background-color: #79C369;
+  width:420px;
+  margin:auto;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+
+}
+#index{
+  height:750px;
+  padding-top: 150px;
+}
+
+img{
+  padding:15px;
+  background-color:#E9E967;
+  width:400px;
+  height:400px;
+  margin:auto;
+  
+}
+
+p{
+  padding:10px;
+  padding:15px;
+  background-color:#E9E967 ;
+  color:#44793F;
+  text-align: left;
+
+}
+
+img:hover{
+  filter: brightness(50%)
+}
+
+.step{
+  display:none;
+}
+
+.step.active{
+  display:block;
+}
+button{
+  background-color: #79C369;
+
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  padding:15px 32px;
+  color:#E9E967 ;
+  text-decoration:none;
+  display:inline-block;
+  font-size: 16px;
+  border:none;
+}
+
+.position{
+  text-transform: capitalize;
+}
+
+/* guessing game*/
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+.game {
+  width: 100%;
+  height: 100%;
+  background: #81B565 ;
+  font-family: 'Righteous', cursive;
+  margin: 0;
+
+}
+
+.game:before {
+  width: 100%;
+  height: 100%;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.square {
+  width: 30%;
+  border-radius: 15%;
+  padding-bottom: 30%;
+  background: #fff;
+  float: left;
+  margin: 1.66%;
+  -webkit-transition: background .5s;
+  -moz-transition: background .5s;
+  -o-transition: background .5s;
+  transition: background .5s;
+}
+
+.questionType {
+  margin: 20px auto;
+  width: 600px;
+  display:none;
+}
+
+.questionType.picked{
+  display: inline-block;
+}
+
+.heading {
+  color: #44793F;
+  margin-top: 1%;
+  text-transform: uppercase;
+}
+
+#optionsBar {
+  background: #E9E967;
+  color:#44793F;
+}
+
+#colorDisplay {
+  font-size: 200%;
+}
+
+#message {
+  display: inline-block;
+  width: 20%;
+}
+
+.btn-link {
+  border: none;
+  background: none;
+  outline: none;
+  color: #44793F;
+  text-transform: uppercase;
+  font-family: 'Righteous', cursive;
+  letter-spacing: 1px;
+  font-size: inherit;
+  max-height: 100%;
+  -webkit-transition: all 1.0s;
+  -moz-transition: all 1.0s;
+  -o-transition: all 1.0s;
+  transition: all 1.0s;
+  outline: none;
+}
+
+.btn-link:hover {
+  text-decoration: none;
+  background: #44793F;
+  color: #E9E967;
+}
+
+.selected {
+  background: #81B565;
+  color: #E9E967;
+}
+
+a{
+  color:#44793F;
+  
+}
+#study{
+  background-color:#44793F;
+  color:#E9E967;
+  text-decoration: none;
+}
+#quiz{
+  background-color:#44793F;
+  color:#E9E967;
+  text-decoration: none;  
+}
+a.main{
+  color:#E9E967;
+  text-decoration: none;
+}
+
+.quiz{
+  width:100px;
+  height: 100px;
+  border:none;
+  background: transparent;
+  border-radius: 25px;
+  display:inline-block;
+  margin: 10px;
+}
+.quiz >img{
+  border-radius: 25px;
+  width:100px;
+  height:100px;
+}

@@ -1,0 +1,46 @@
+* { box-sizing: border-box; }
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300&display=swap');
+
+body {
+  width: 100%;
+  text-align: center;
+  background-color:rgb(50,50,50);
+}
+
+.phone {
+  border: 1px solid lightgray;
+  background-color: rgb(250,250,250);
+  margin: 10px auto 10px auto;
+  width:420px;
+}
+
+.profile {
+  background-color: #79C369;
+
+  text-align: left;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+img{
+  padding:15px;
+  background-color:#E9E967;
+  width:400px;
+  height:400px;
+  margin:auto;
+  
+}
+
+p{
+  padding:10px;
+  padding:15px;
+  background-color:#E9E967 ;
+  color:#44793F;
+}
+
+img:hover{
+  filter: brightness(50%)
+}
+
+p:hover{
+  filter: brightness(50%)
+}
