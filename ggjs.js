@@ -27,6 +27,7 @@ function setupModeButtons() {
       var bId = this.id;
       const quest = document.getElementById("q"+bId);
       if (bId == "avatars"){buildAvatarQuiz()};
+      if (bId == "names"){buildNameQuiz()};
       quest.classList.add("picked");
       this.classList.add("selected");
     });
