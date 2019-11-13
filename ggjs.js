@@ -5,6 +5,8 @@ var questionDivs = document.querySelectorAll(".questionType");
 var order=[0,1,2];
 var avQuestion = document.getElementById("qavatars");
 var nQuestion = document.getElementById("qnames")
+var cQuestion = document.getElementById("qcommon")
+var pointCounter = 0
 
 init();
 
@@ -28,6 +30,7 @@ function setupModeButtons() {
       const quest = document.getElementById("q"+bId);
       if (bId == "avatars"){buildAvatarQuiz()};
       if (bId == "names"){buildNameQuiz()};
+      if (bId == "common"){buildCommonQuiz()};
       quest.classList.add("picked");
       this.classList.add("selected");
     });
@@ -133,21 +136,22 @@ function buildNameQuiz(){
       if (order[index] == 0){
         answers.push(
         `<button class="quiz correct">
-        <img src ="${ans[order[index]]} ">
+        ${ans[order[index]]}
         </button>`);
       }
       else {
         answers.push(
         `<button class="quiz ">
-        <img src ="${ans[order[index]]}">
+        ${ans[order[index]]}
         </button>`);
       }
       
     }
     nameQ.push(
-      `<div class = "question"> Question ${questionNumber+1}: Who teaches ${currentTeacher.subjects} and looks like <break>
-      ${currentTeacher.imgpath} ! </div>
-      <div class = "answers"> ${answers.join(' ')}</div>`
+      `<div class = "question"> Question ${questionNumber+1}: Who teaches ${currentTeacher.subjects} and looks like this <br>
+      <img src="${currentTeacher.imgpath}" class="qimg"> </div>
+      <div class = "answers"> ${answers.join(' ')}</div>
+      <div id="${"result"+questionNumber+1} class="result"></div>`
       );
 
   }
@@ -155,3 +159,56 @@ function buildNameQuiz(){
 nQuestion.innerHTML = nameQ.join(" ");
 }
 
+function buildCommonQuiz(){
+  var comQ= [];
+  comQ.innerHTML = comQ.join(" ");
+  qTeachers.forEach(
+    (currentTeacher, questionNumber)=> {
+    var answers=[];
+    // creating a new list every time it loops for answers
+    var ans = [];
+    // just the exact answers we want to display e.g. Miss fawcett or common 2
+    ans.push(currentTeacher.common);
+    // the first answer is always the right one
+    while (ans.length < 3){
+      let r = Math.floor(Math.random()*teachers.length);
+      if(ans.indexOf(teachers[r].common) === -1 && teachers[r].imgpath != "images/default.png"){
+        ans.push(teachers[r].common)
+      }
+      //gets a random person and adds their avatar to the list if it's not already there and it's not the default
+    };
+    order = shuffle(order);
+
+    for (index in order){
+
+      if (order[index] == 0){
+        answers.push(
+        `<button class="quiz" onclick="resultShow(correct)">
+        ${ans[order[index]]}
+        </button>`);
+      }
+      else {
+        answers.push(
+        `<button class="quiz" onclick="resultShow(incorrect)">
+        ${ans[order[index]]}
+        </button>`);
+      }
+      
+    }
+    comQ.push(
+      `<div class = "question"> Question ${questionNumber+1}: What common is ${currentTeacher.pname} in? </div>
+      <div class = "answers"> ${answers.join(' ')}</div>
+      <div id="${"result"+questionNumber+1} class="result"></div>`
+      );
+
+  }
+)
+cQuestion.innerHTML = comQ.join(" ");
+}
+
+function resutShow(ans){
+  if ans == "correct"{
+    pointCounter+=1
+    ans.innerHTML`<style='background-colour:green>'
+  }
+}

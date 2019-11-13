@@ -200,3 +200,9 @@ a.main{
   width:100px;
   height:100px;
 }
+
+.qimg{
+  width:100px;
+  height:100px;
+  border-radius: 25px;
+}
