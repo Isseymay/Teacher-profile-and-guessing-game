@@ -89,13 +89,13 @@ function buildAvatarQuiz(){
 
       if (order[index] == 0){
         answers.push(
-        `<button class="quiz correct">
-        <img src ="${ans[order[index]]}"alt = "Profile Pic ">
+        `<button class="quiz" onclick="resultShow('correct', ${questionNumber+1})">
+        <img src ="${ans[order[index]]}"alt = "Profile Pic " >
         </button>`);
       }
       else {
         answers.push(
-        `<button class="quiz ">
+        `<button class="quiz" onclick="resultShow('incorrect', ${questionNumber+1})">
         <img src ="${ans[order[index]]}"alt = "Profile Pic ">
         </button>`);
       }
@@ -136,13 +136,13 @@ function buildNameQuiz(){
 
       if (order[index] == 0){
         answers.push(
-        `<button class="quiz correct">
+        `<button class="quiz" onclick="resultShow('correct', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
       else {
         answers.push(
-        `<button class="quiz ">
+        `<button class="quiz" onclick="resultShow('incorrect', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
