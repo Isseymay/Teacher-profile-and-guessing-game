@@ -103,7 +103,8 @@ function buildAvatarQuiz(){
     }
     avatarQ.push(
       `<div class = "question"> Question ${questionNumber+1}: Find ${currentTeacher.pname}'s face! </div>
-      <div class = "answers"> ${answers.join(' ')}</div>`
+      <div class = "answers"> ${answers.join(' ')}</div>
+      <div id="${"res"+(parseInt(questionNumber)+1)} class="result"></div>`
       );
 
   }
@@ -151,7 +152,7 @@ function buildNameQuiz(){
       `<div class = "question"> Question ${questionNumber+1}: Who teaches ${currentTeacher.subjects} and looks like this <br>
       <img src="${currentTeacher.imgpath}" class="qimg"> </div>
       <div class = "answers"> ${answers.join(' ')}</div>
-      <div id="${"result"+questionNumber+1} class="result"></div>`
+      <div id="${"res"+(parseInt(questionNumber)+1)} class="result"></div>`
       );
 
   }
@@ -183,13 +184,13 @@ function buildCommonQuiz(){
 
       if (order[index] == 0){
         answers.push(
-        `<button class="quiz" onclick="resultShow(correct)">
+        `<button class="quiz" onclick="resultShow('correct', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
       else {
         answers.push(
-        `<button class="quiz" onclick="resultShow(incorrect)">
+        `<button class="quiz" onclick="resultShow('incorrect', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
@@ -198,7 +199,7 @@ function buildCommonQuiz(){
     comQ.push(
       `<div class = "question"> Question ${questionNumber+1}: What common is ${currentTeacher.pname} in? </div>
       <div class = "answers"> ${answers.join(' ')}</div>
-      <div id="${"result"+questionNumber+1} class="result"></div>`
+      <div id="${"res"+(parseInt(questionNumber)+1)}" class="result"></div>`
       );
 
   }
@@ -206,9 +207,19 @@ function buildCommonQuiz(){
 cQuestion.innerHTML = comQ.join(" ");
 }
 
-function resutShow(ans){
-  if ans == "correct"{
+function resultShow(ans, num){
+  var id = 'res'+num
+  var divRes = document.getElementById(id)
+  if (ans == "correct"){
     pointCounter+=1
-    ans.innerHTML`<style='background-colour:green>'
-  }
+    divRes.classList.remove("wrong")
+    divRes.classList.add("right")
+
+    divRes.innerHTML =  `Correct!`}
+  else
+    {divRes.innerHTML =`Not this time!`
+      divRes.classList.remove("right")
+      divRes.classList.add("wrong")
+    }
+  
 }
