@@ -12,7 +12,7 @@ init();
 
 function init() {
   setupModeButtons();
-  setupQuestions();
+
 
 }
 
@@ -28,9 +28,18 @@ function setupModeButtons() {
       
       var bId = this.id;
       const quest = document.getElementById("q"+bId);
-      if (bId == "avatars"){buildAvatarQuiz()};
-      if (bId == "names"){buildNameQuiz()};
-      if (bId == "common"){buildCommonQuiz()};
+      if (bId == "avatars"){
+        setupQuestions();
+        buildAvatarQuiz();
+      }
+      if (bId == "names"){
+        setupQuestions();
+        buildNameQuiz();
+      }
+      if (bId == "common"){
+        setupQuestions();
+        buildCommonQuiz();
+      }
       quest.classList.add("picked");
       this.classList.add("selected");
     });
@@ -38,7 +47,9 @@ function setupModeButtons() {
 }
 
 function setupQuestions(){
-  while (questions.length < 5){
+  questions = [];
+  qTeachers = [];
+  while (questions.length < 10){
     let r = Math.floor(Math.random()*teachers.length);
     if(questions.indexOf(r) === -1 && teachers[r].imgpath != "images/default.png"){
       questions.push(r);
@@ -89,22 +100,23 @@ function buildAvatarQuiz(){
 
       if (order[index] == 0){
         answers.push(
-        `<button class="quiz" onclick="resultShow('correct', ${questionNumber+1})">
+        `<button class="quiz" onclick="resultShow('correct','a', ${questionNumber+1}) ">
         <img src ="${ans[order[index]]}"alt = "Profile Pic " >
         </button>`);
       }
       else {
         answers.push(
-        `<button class="quiz" onclick="resultShow('incorrect', ${questionNumber+1})">
+        `<button class="quiz" onclick="resultShow('incorrect','a', ${questionNumber+1})">
         <img src ="${ans[order[index]]}"alt = "Profile Pic ">
         </button>`);
       }
       
     }
+    console.log(answers, ans, questionNumber)
     avatarQ.push(
       `<div class = "question"> Question ${questionNumber+1}: Find ${currentTeacher.pname}'s face! </div>
       <div class = "answers"> ${answers.join(' ')}</div>
-      <div id="${"res"+(parseInt(questionNumber)+1)} class="result"></div>`
+      <div id="${"res"+"a"+(parseInt(questionNumber)+1)}" class="result"></div>`
       );
 
   }
@@ -136,13 +148,13 @@ function buildNameQuiz(){
 
       if (order[index] == 0){
         answers.push(
-        `<button class="quiz" onclick="resultShow('correct', ${questionNumber+1})">
+        `<button class="quiz" onclick="resultShow('correct','n', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
       else {
         answers.push(
-        `<button class="quiz" onclick="resultShow('incorrect', ${questionNumber+1})">
+        `<button class="quiz" onclick="resultShow('incorrect','n', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
@@ -152,7 +164,7 @@ function buildNameQuiz(){
       `<div class = "question"> Question ${questionNumber+1}: Who teaches ${currentTeacher.subjects} and looks like this <br>
       <img src="${currentTeacher.imgpath}" class="qimg"> </div>
       <div class = "answers"> ${answers.join(' ')}</div>
-      <div id="${"res"+(parseInt(questionNumber)+1)} class="result"></div>`
+      <div id="${"res"+"n"+(parseInt(questionNumber)+1)}" class="result"></div>`
       );
 
   }
@@ -184,13 +196,13 @@ function buildCommonQuiz(){
 
       if (order[index] == 0){
         answers.push(
-        `<button class="quiz" onclick="resultShow('correct', ${questionNumber+1})">
+        `<button class="quiz" onclick="resultShow('correct', 'c',${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
       else {
         answers.push(
-        `<button class="quiz" onclick="resultShow('incorrect', ${questionNumber+1})">
+        `<button class="quiz" onclick="resultShow('incorrect','c', ${questionNumber+1})">
         ${ans[order[index]]}
         </button>`);
       }
@@ -199,7 +211,7 @@ function buildCommonQuiz(){
     comQ.push(
       `<div class = "question"> Question ${questionNumber+1}: What common is ${currentTeacher.pname} in? </div>
       <div class = "answers"> ${answers.join(' ')}</div>
-      <div id="${"res"+(parseInt(questionNumber)+1)}" class="result"></div>`
+      <div id="${"res"+"c"+(parseInt(questionNumber)+1)}" class="result"></div>`
       );
 
   }
@@ -207,17 +219,19 @@ function buildCommonQuiz(){
 cQuestion.innerHTML = comQ.join(" ");
 }
 
-function resultShow(ans, num){
-  var id = 'res'+num
-  var divRes = document.getElementById(id)
-  if (ans == "correct"){
-    pointCounter+=1
-    divRes.classList.remove("wrong")
-    divRes.classList.add("right")
+function resultShow(ans,let, num){   
+  var id = 'res'+let+num  
+   var divRes = document.getElementById(id)  
+   console.log(id + divRes)  
+    if (ans =="correct"){    
+     pointCounter+=1 
 
-    divRes.innerHTML =  `Correct!`}
-  else
-    {divRes.innerHTML =`Not this time!`
+      divRes.classList.remove("wrong")
+divRes.classList.add("right")
+    divRes.innerHTML =  `Correct!`
+    } 
+  else{
+    divRes.innerHTML =`Not this time!`
       divRes.classList.remove("right")
       divRes.classList.add("wrong")
     }
